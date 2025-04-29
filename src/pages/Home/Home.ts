@@ -1,10 +1,10 @@
 // components
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 // assets
 import main_page_banner_img from "../../assets/banners/main_page_banner.png";
-import { Footer } from "../../components/Footer";
 
 export const Home = (): string => {
   return /*html*/ `
