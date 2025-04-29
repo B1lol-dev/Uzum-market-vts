@@ -2,4 +2,4 @@ import "./style.css";
 
 import { Router } from "./Router";
 
-Router(document.getElementById("root")! as HTMLDivElement);
+Router(document.getElementById("app")! as HTMLDivElement);

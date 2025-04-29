@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "inter";
+  src: url("./assets/fonts/inter/Inter_18pt-Regular.ttf");
+}
+
+@theme {
+  --color-um-turbo: #f0f0ff;
+  --color-um-lonestar: #7000ff;
+  --color-um-shark: #1f2026;
+  --color-um-manatee: #8b8e99;
+  --color-um-mid-gray: #595b66;
+  --color-um-athens-gray: #f2f4f7;
+  --color-um-nero: #ffffff;
+  --color-um-boulder: #757575;
+}
+
 button {
   cursor: pointer;
+}
+
+* {
+  font-family: "inter";
+}
+
+.font-inter {
+  font-family: "inter";
 }
