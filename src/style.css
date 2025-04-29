@@ -17,12 +17,16 @@
   --color-um-diesel: #ffff00;
 }
 
-button {
-  cursor: pointer;
-}
-
 * {
   font-family: "inter";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
 }
 
 .font-inter {
