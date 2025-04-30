@@ -80,7 +80,7 @@ export const Header = () => {
             </nav>    
         `)}
     </header>
-    <div>
+    <div class="mb-6">
         ${Container(/*html*/ `
             <div class="flex items-center">
                 <a href="#" class="flex items-center gap-1 font-semibold text-xs">

@@ -31,7 +31,7 @@ export const Home = (): string => {
 
   return /*html*/ `
     ${Header()}
-    <main class="mt-6">
+    <main>
       <section>
         ${Container(/*html*/ `
           <img src=${main_page_banner_img} alt="main page banner" class="rounded-xl max-w-[1240px] w-full h-[413px]">  
