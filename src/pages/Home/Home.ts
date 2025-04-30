@@ -19,7 +19,7 @@ export const Home = (): string => {
     axios
       .get(`${API_URL}/products`)
       .then((res) => {
-        const { data: products } = res;
+        const products = res.data.products;
 
         const productsHTML = products
           .map((product: any) => ProductCard(product))
