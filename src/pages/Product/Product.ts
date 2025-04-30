@@ -58,7 +58,24 @@ export const Product = (data: any): string => {
                 } class="bg-um-athens-gray w-[730px] h-[490px] rounded-3xl object-contain">
                             </div>
                         </div>
-                        <div></div>
+                        <div class="max-w-[381px] w-full">
+                            <div class="py-6 px-5 rounded-3xl border-1 border-um-manatee">
+                                <h1 class="font-bold text-3xl flex gap-2 items-start">${Number(
+                                  data.price *
+                                    (1 - data.discountPercentage / 100)
+                                ).toFixed(
+                                  2
+                                )} USD <span class="text-base font-normal text-um-manatee line-through">${
+                  data.price
+                } USD</span> <span class="bg-um-lonestar text-xs text-um-nero flex items-center justify-center px-1.5 py-0.5 rounded-full ml-auto">-${Number(
+                  data.discountPercentage
+                ).toFixed(0)}%</span></h1>
+                                <div class="bg-um-lonestar text-xs text-um-nero inline-flex items-center justify-center px-1.5 py-0.5 rounded-full mb-1">Super narx</div>
+                                <div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `)}
             </section>
