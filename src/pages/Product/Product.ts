@@ -42,16 +42,16 @@ export const Product = (data: any): string => {
                                 </ul>
                             </div>
                             <div class="flex gap-3 mt-4">
-                                <div>
-                                    ${data.images.map(
-                                      (image: string): string => {
+                                <div class="flex flex-col gap-3">
+                                    ${data.images
+                                      .map((image: string): string => {
                                         return /*html*/ `
-                                        <button type="button" class="h-[83px] w-[63px] rounded-2xl bg-um-athens-gray border-1 border-um-shark">
+                                        <button type="button" class="h-[83px] w-[63px] rounded-2xl bg-um-athens-gray first:border-1 first:border-um-shark">
                                             <img src=${image} alt="product">
                                         </button>
                                         `;
-                                      }
-                                    )}
+                                      })
+                                      .join("")}
                                 </div>
                                 <img src=${data.images[0]} alt=${
                   data.title
@@ -72,7 +72,7 @@ export const Product = (data: any): string => {
                 ).toFixed(0)}%</span></h1>
                                 <div class="bg-um-lonestar text-xs text-um-nero inline-flex items-center justify-center px-1.5 py-0.5 rounded-full mb-1">Super narx</div>
                                 <div>
-                                    
+
                                 </div>
                             </div>
                         </div>
