@@ -8,8 +8,25 @@ import heart_icon from "../../assets/icons/heart_icon.svg";
 import checkmark_icon from "../../assets/icons/checkmark_icon.svg";
 import badge_bought_icon from "../../assets/icons/badge_bought_icon.png";
 
+import uzum_card_img from "../../assets/icons/payments/uzum_card.svg";
+import uzum_nasiya_img from "../../assets/icons/payments/uzun_nasiya.svg";
+import uzum_bank_img from "../../assets/icons/payments/uzum_bank.svg";
+import uzcard_img from "../../assets/icons/payments/uzcard.svg";
+import humo_img from "../../assets/icons/payments/humo.svg";
+import mastercard_img from "../../assets/icons/payments/mastercard.svg";
+import cash_img from "../../assets/icons/payments/cash.svg";
+
 export const Product = (data: any): string => {
   console.log(data);
+  const paymentMethods: string[] = [
+    uzum_card_img,
+    uzum_nasiya_img,
+    uzum_bank_img,
+    uzcard_img,
+    humo_img,
+    mastercard_img,
+    cash_img,
+  ];
 
   return /*html*/ `
         ${Header()}
@@ -105,6 +122,29 @@ export const Product = (data: any): string => {
                 )} kishi sotib oldi</div>    
                                 </div>
                             </div>
+                            <div class="py-6 px-5 rounded-3xl border-1 border-um-manatee mt-5">
+                              <div class="border-b-1 border-um-boulder pb-3">
+                                <h3 class="flex justify-between items-start text-sm text-um-shark font-bold gap-0.5">Yetkazib berish 1 kundan boshlab <span class="text-xs font-medium text-um-nero bg-um-lonestar flex items-center justify-center text-nowrap rounded-xl px-2 py-0.5">Uzum Market ombori</span></h3>
+                                <p class="text-sm text-um-boulder mt-1">Uzum buyurtmalarni topshirish punktida yoki kuryer orqali</p>
+                              </div>
+                              <div class="border-b-1 border-um-boulder py-3">
+                                <h3 class="flex justify-between items-start text-sm text-um-shark font-bold gap-0.5">Qulay usulda xavfsiz toʻlov</h3>
+                                <p class="text-sm text-um-boulder mt-1">Karta orqali, naqd pulda yoki boʻlib toʻlang</p>
+                                <div class="flex justify-between h-9 mt-2">
+                                  ${paymentMethods
+                                    .map(
+                                      (payement) =>
+                                        /*html*/ `<img src=${payement} alt="payement method" class="h-full">`
+                                    )
+                                    .join("")}
+                                </div>
+                              </div>
+                              <div class="pt-3">
+                                <h3 class="flex justify-between items-start text-sm text-um-shark font-bold gap-0.5">Qaytarish oson va tez</h3>
+                                <p class="text-sm text-um-boulder mt-1">Tovarlarni 10 kun ichida qabul qilamiz va darhol pulini qaytaramiz. <a href="#" class="text-um-lonestar">Batafsil</a></p>
+                              </div>
+                            </div>
+                            <div class="py-6 px-5 rounded-3xl border-1 border-um-manatee mt-5 hidden"></div>
                         </div>
                     </div>
                 `)}
