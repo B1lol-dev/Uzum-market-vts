@@ -144,7 +144,22 @@ export const Product = (data: any): string => {
                                 <p class="text-sm text-um-boulder mt-1">Tovarlarni 10 kun ichida qabul qilamiz va darhol pulini qaytaramiz. <a href="#" class="text-um-lonestar">Batafsil</a></p>
                               </div>
                             </div>
-                            <div class="py-6 px-5 rounded-3xl border-1 border-um-manatee mt-5 hidden"></div>
+                            <div class="py-6 px-5 rounded-3xl border-1 border-um-manatee mt-5">
+                              <div class="flex items-center gap-3">
+                                <img src="https://picsum.photos/200" alt="${
+                                  data.brand
+                                }" class="rounded-full h-[57px] w-[57px]">
+                                <div>
+                                  <h1>${data.brand}</h1>
+                                  <p class="flex gap-1 font-medium text-sm"><img src=${star_icon} alt="rating: ">${Number(
+                  data.rating
+                ).toFixed(1)} <span class="text-um-manatee">( ${
+                  data.reviews.length * 10
+                } baho )</span></p>
+                                </div>
+                              </div>
+                              <button type="button" class="bg-um-athens-gray text-base rounded-xl w-full py-4 mt-3">Do'konga o'tish</button>
+                            </div>
                         </div>
                     </div>
                 `)}
