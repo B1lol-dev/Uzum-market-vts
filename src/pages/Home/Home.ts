@@ -27,7 +27,7 @@ export const Home = (): string => {
     )! as HTMLDivElement;
 
     axios
-      .get(`${API_URL}/products?limit=30`)
+      .get(`${API_URL}/products?limit=100`)
       .then((res) => {
         const products = res.data.products;
 
