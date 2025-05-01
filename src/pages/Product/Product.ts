@@ -11,6 +11,7 @@ import { ReviewCard } from "./components/ReviewCard";
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
 import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
+import { Footer } from "../../components/Footer";
 
 // interfaces
 declare global {
@@ -152,5 +153,6 @@ export const Product = (data: any): string => {
                 `)}
             </section>
         </main>
+        ${Footer()}
     `;
 };

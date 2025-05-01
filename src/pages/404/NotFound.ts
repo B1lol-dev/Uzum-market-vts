@@ -9,6 +9,7 @@ import { ProductCard } from "../../components/Cards/ProductCard";
 // assets
 import searching_penguin_img from "../../assets/images/searching_penguin.png";
 import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
+import { Footer } from "../../components/Footer";
 
 export const NotFound = (): string => {
   setTimeout(() => {
@@ -49,5 +50,6 @@ export const NotFound = (): string => {
         `)}
       </section>
     </main>
+    ${Footer()}
   `;
 };
