@@ -2,7 +2,6 @@
 import star_icon from "../../../assets/icons/star_icon.svg";
 
 export const ReviewCard = (data: any) => {
-  console.log(data);
   return /*html*/ `
     <div class="bg-um-nero border-1 border-um-boulder rounded-[20px] p-[20px] h-[212px]">
         <h3 class="flex items-center justify-between text-sm text-um-shark font-semibold">${

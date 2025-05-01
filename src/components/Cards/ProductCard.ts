@@ -3,8 +3,6 @@ import star_icon from "../../assets/icons/star_icon.svg";
 import add_to_bag_icon from "../../assets/icons/add_to_bag_icon.svg";
 
 export const ProductCard = (data: any): string => {
-  console.log(data);
-
   return /*html*/ `
     <a href="/product/${data.id}" onclick="location.pathname = '/product/${
     data.id

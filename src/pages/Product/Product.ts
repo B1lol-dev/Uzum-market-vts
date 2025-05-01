@@ -6,6 +6,9 @@ import { ProductRight } from "./components/ProductRight";
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
 import { ReviewCard } from "./components/ReviewCard";
+import axios from "axios";
+import { API_URL } from "../../constants/constants";
+import { ProductCard } from "../../components/Cards/ProductCard";
 
 // interfaces
 declare global {
@@ -30,6 +33,24 @@ export const Product = (data: any): string => {
       self.classList.add("border-1", "border-um-shark");
     }
   };
+
+  setTimeout(() => {
+    const home_products_wrapper = document.getElementById(
+      "product_products_wrapper"
+    )! as HTMLDivElement;
+
+    axios
+      .get(`${API_URL}/products?limit=10`)
+      .then((res) => {
+        const products = res.data.products;
+
+        const productsHTML = products
+          .map((product: any) => ProductCard(product))
+          .join("");
+        home_products_wrapper.innerHTML = productsHTML;
+      })
+      .catch((err) => console.error(err));
+  }, 0);
 
   return /*html*/ `
         ${Header()}
@@ -103,9 +124,24 @@ export const Product = (data: any): string => {
                               </div>
                               <button type="button" class="bg-um-athens-gray w-full my-5 py-5 rounded-xl text-base font-semibold" onclick="this.previousElementSibling.classList.contains('h-[212px]') ? this.previousElementSibling.classList.remove('h-[212px]') : this.previousElementSibling.classList.add('h-[212px]')">Hamma sharhlarni ko'rish</button>
                             </div>
+                            <div class="flex flex-col my-5 items-start">
+                              <div class="bg-um-shark text-um-nero flex items-center justify-center rounded-3xl text-base font-medium px-4 py-2">Mahsulot tavsili</div>
+                              <ul class="list-disc ml-4 mt-5 flex flex-col gap-3">
+                                ${Object.entries(data.dimensions)
+                                  .map(
+                                    ([key, value]) =>
+                                      /*html*/ `<li>${key}: ${value}</li>`
+                                  )
+                                  .join("")}
+                              </ul>
+                              <p class="mt-5 text-um-shark text-sm">${
+                                data.description
+                              }</p>
+                            </div>
                         </div>
                         ${ProductRight(data)}
                     </div>
+                    <div id="product_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8 mt-15"></div>  
                 `)}
             </section>
         </main>
