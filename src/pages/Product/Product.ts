@@ -1,14 +1,15 @@
+import axios from "axios";
+import { API_URL } from "../../constants/constants";
+
 // compoonents
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { ProductRight } from "./components/ProductRight";
+import { ProductCard } from "../../components/Cards/ProductCard";
+import { ReviewCard } from "./components/ReviewCard";
 
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
-import { ReviewCard } from "./components/ReviewCard";
-import axios from "axios";
-import { API_URL } from "../../constants/constants";
-import { ProductCard } from "../../components/Cards/ProductCard";
 
 // interfaces
 declare global {
