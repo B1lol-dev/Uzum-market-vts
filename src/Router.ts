@@ -23,7 +23,7 @@ export const Router = (root: HTMLDivElement) => {
           const { data } = res;
           root.innerHTML = Product(data);
         })
-        .catch((err) => {
+        .catch(() => {
           root.innerHTML = NotFound();
         });
     })
