@@ -91,9 +91,19 @@ export const CartProductCard = (data: any): string => {
           </div>
           <div class="flex items-center">
             <div class="rounded-[2px] border-1 border-um-boulder text-um-boulder flex items-center">
-              <button type="button" class="w-10 text-2xl" onclick="this.nextElementSibling.value=Number(this.nextElementSibling.value)-1; if(this.nextElementSibling.value < 1){this.nextElementSibling.value = 1}">-</button>
-              <input type="number" value="1" min="1" class="w-10 text-center no-inp-btns text-sm">
-              <button type="button" class="w-10 text-2xl" onclick="this.previousElementSibling.value=Number(this.previousElementSibling.value)+1">+</button>
+              <button type="button" class="w-10 text-2xl" onclick="this.nextElementSibling.value=Number(this.nextElementSibling.value)-1; if(this.nextElementSibling.value < 1){this.nextElementSibling.value = 1}; document.querySelector('[data-cart-product-price]').innerText = (${Number(
+                data.price * (1 - data.discountPercentage / 100)
+              ).toFixed(
+                2
+              )} * this.nextElementSibling.value) + ' USD'">-</button>
+              <input type="number" value="1" min="1" class="w-10 text-center no-inp-btns text-sm" oninput="document.querySelector('[data-cart-product-price]').innerText = (${Number(
+                data.price * (1 - data.discountPercentage / 100)
+              ).toFixed(2)} * this.value) + ' USD'">
+              <button type="button" class="w-10 text-2xl" onclick="this.previousElementSibling.value=Number(this.previousElementSibling.value)+1; document.querySelector('[data-cart-product-price]').innerText = (${Number(
+                data.price * (1 - data.discountPercentage / 100)
+              ).toFixed(
+                2
+              )} * this.previousElementSibling.value) + ' USD'">+</button>
             </div>
           </div>
         </div>
@@ -104,7 +114,7 @@ export const CartProductCard = (data: any): string => {
             ${trash_icon}
             Yo'q qilish
           </button>
-          <h2 class="text-um-shark font-medium text-xl mt-4">${Number(
+          <h2 class="text-um-shark font-medium text-xl mt-4" data-cart-product-price>${Number(
             data.price * (1 - data.discountPercentage / 100)
           ).toFixed(2)} USD</h2>
           <p class="text-um-boulder line-through text-sm mt-1">${data.price}</p>
