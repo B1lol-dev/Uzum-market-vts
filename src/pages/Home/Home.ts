@@ -8,6 +8,9 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { ProductCard } from "../../components/Cards/ProductCard";
 
+// skeletons
+import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
+
 // assets
 import main_page_banner_img from "../../assets/banners/main_page_banner.png";
 import main_page_banner_img_2 from "../../assets/banners/main_page_banner_2.jpg";
@@ -64,7 +67,10 @@ export const Home = (): string => {
       <section class="pt-12">
           ${Container(/*html*/ `
             <div id="home_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8">
-            
+              ${Array(20)
+                .fill("")
+                .map(() => ProductCardSkeleton())
+                .join("")}
             </div>  
           `)}
       </section>

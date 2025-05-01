@@ -10,6 +10,7 @@ import { ReviewCard } from "./components/ReviewCard";
 
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
+import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
 
 // interfaces
 declare global {
@@ -142,7 +143,12 @@ export const Product = (data: any): string => {
                         </div>
                         ${ProductRight(data)}
                     </div>
-                    <div id="product_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8 mt-15"></div>  
+                    <div id="product_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8 mt-15">
+                      ${Array(20)
+                        .fill("")
+                        .map(() => ProductCardSkeleton())
+                        .join("")}
+                    </div>  
                 `)}
             </section>
         </main>
