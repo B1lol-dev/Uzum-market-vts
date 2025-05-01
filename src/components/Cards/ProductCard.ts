@@ -7,11 +7,11 @@ export const ProductCard = (data: any): string => {
     <a href="/product/${data.id}" onclick="location.pathname = '/product/${
     data.id
   }'">
-        <div class="flex flex-col max-w-[232px] w-full gap-3">
+        <div class="flex flex-col max-w-[232px] w-full gap-3 transition duration-200 hover:shadow-md group">
             <div class="w-full h-[300px] flex items-center justify-center bg-um-athens-gray rounded-lg">
                 <img src=${data.thumbnail} alt=${
     data.title
-  } class="w-full h-full object-contain">
+  } class="w-full h-full object-contain transition duration-200 group-hover:scale-110">
             </div>
             <div class="flex flex-col items-start py-3 px-2">
                 <h2 class="text-um-shark text-sm h-10 overflow-y-scroll">${
