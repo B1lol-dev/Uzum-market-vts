@@ -101,6 +101,7 @@ export const Product = (data: any): string => {
                                   .map((review: any) => ReviewCard(review))
                                   .join("")}
                               </div>
+                              <button type="button" class="bg-um-athens-gray w-full my-5 py-5 rounded-xl text-base font-semibold" onclick="this.previousElementSibling.classList.contains('h-[212px]') ? this.previousElementSibling.classList.remove('h-[212px]') : this.previousElementSibling.classList.add('h-[212px]')">Hamma sharhlarni ko'rish</button>
                             </div>
                         </div>
                         ${ProductRight(data)}
