@@ -7,6 +7,7 @@ import { Home } from "./pages/Home/Home";
 import { NotFound } from "./pages/404/NotFound";
 import { Product } from "./pages/Product/Product";
 import { Search } from "./pages/Search/Search";
+import { Cart } from "./pages/Cart/Cart";
 
 export const Router = (root: HTMLDivElement) => {
   createRouter()
@@ -29,6 +30,9 @@ export const Router = (root: HTMLDivElement) => {
     .get("/search/:query", (req) => {
       const query = req.get("query");
       root.innerHTML = Search(query);
+    })
+    .get("/cart", () => {
+      root.innerHTML = Cart();
     })
     .error(404, () => {
       root.innerHTML = NotFound();

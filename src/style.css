@@ -32,3 +32,14 @@ button {
 .font-inter {
   font-family: "inter";
 }
+
+/* Hide the arrows on number inputs */
+.no-inp-btns::-webkit-outer-spin-button,
+.no-inp-btns::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-inp-btns {
+  -moz-appearance: textfield;
+}

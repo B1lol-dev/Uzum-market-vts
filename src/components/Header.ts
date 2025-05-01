@@ -85,10 +85,12 @@ export const Header = () => {
                         <img src=${heart_icon} alt="saved">
                         Saralangan
                     </button>
-                    <button type="button" class="flex items-center gap-2">
-                        <img src=${bag_icon} alt="cart">
-                        Savat
-                    </button>
+                    <a href="/cart" onclick="location.pathname = '/cart'">
+                        <button type="button" class="flex items-center gap-2">
+                            <img src=${bag_icon} alt="cart">
+                            Savat
+                        </button>
+                    </a>
                 </div>
             </nav>    
         `)}
