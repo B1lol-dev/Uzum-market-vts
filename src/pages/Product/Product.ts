@@ -4,6 +4,7 @@ import { Header } from "../../components/Header";
 
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
+import heart_icon from "../../assets/icons/heart_icon.svg";
 
 export const Product = (data: any): string => {
   console.log(data);
@@ -71,12 +72,12 @@ export const Product = (data: any): string => {
                   data.discountPercentage
                 ).toFixed(0)}%</span></h1>
                                 <div class="bg-um-lonestar text-xs text-um-nero inline-flex items-center justify-center px-1.5 py-0.5 rounded-full mb-1">Super narx</div>
-                                <div class="flex flex-col bg-um-athens-gray rounded-xl p-3">
+                                <div class="flex flex-col bg-um-athens-gray rounded-xl p-3 my-3!">
                                   <div class="flex justify-between">
-                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90 brightness-100!">24 oy</button>
-                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">12 oy</button>
-                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">6 oy</button>
-                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">3 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 rounded-md bg-um-athens-gray brightness-95 bg-um-nero!">24 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 rounded-md bg-um-athens-gray brightness-95">12 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 rounded-md bg-um-athens-gray brightness-95">6 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 rounded-md bg-um-athens-gray brightness-95">3 oy</button>
                                   </div>
                                   <div class="flex items-center gap-2 mt-2">
                                     <h3 class="bg-um-diesel text-base font-semibold rounded-md py-0.5 px-1.5">${Number(
@@ -86,9 +87,13 @@ export const Product = (data: any): string => {
                                     <button type="button" class="ml-auto text-um-boulder">></button>
                                   </div>
                                 </div>
-                                <div>
-                                    
+                                <div class="flex mt-3 justify-between items-center gap-2">
+                                  <button type="button" class="h-12 bg-um-athens-gray max-w-2xs rounded-xl text-base font-medium w-full flex items-center justify-center">1 klikda xarid qilish</button>
+                                  <button type="button" class="h-12 bg-um-athens-gray max-w-12 rounded-xl text-base font-medium w-full flex items-center justify-center">
+                                    <img src=${heart_icon} alt="heart">
+                                  </button>
                                 </div>
+                                <button type="button" class="mt-3 bg-um-lonestar text-um-nero w-full rounded-xl py-4 text-base font-semibold">Savatga qoʻshish</button>
                             </div>
                         </div>
                     </div>
