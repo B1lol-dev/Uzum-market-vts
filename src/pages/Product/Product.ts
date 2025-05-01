@@ -5,6 +5,8 @@ import { Header } from "../../components/Header";
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
 import heart_icon from "../../assets/icons/heart_icon.svg";
+import checkmark_icon from "../../assets/icons/checkmark_icon.svg";
+import badge_bought_icon from "../../assets/icons/badge_bought_icon.png";
 
 export const Product = (data: any): string => {
   console.log(data);
@@ -94,6 +96,14 @@ export const Product = (data: any): string => {
                                   </button>
                                 </div>
                                 <button type="button" class="mt-3 bg-um-lonestar text-um-nero w-full rounded-xl py-4 text-base font-semibold">Savatga qoʻshish</button>
+                                <div class="flex flex-col gap-2 mt-5">
+                                  <div class="flex items-center gap-3 text-um-shark text-sm"><img src=${checkmark_icon} alt="✅" width="32" height="32"> ${
+                  data.stock
+                } dona xarid qilish mumkum</div>    
+                                  <div class="flex items-center gap-3 text-um-shark text-sm"><img src=${badge_bought_icon} alt="🛍️" width="32" height="32"> Bu hafta ${Math.round(
+                  data.reviews.length / 3
+                )} kishi sotib oldi</div>    
+                                </div>
                             </div>
                         </div>
                     </div>
