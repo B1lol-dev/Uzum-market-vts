@@ -5,9 +5,10 @@ import { ProductRight } from "./components/ProductRight";
 
 // assets
 import star_icon from "../../assets/icons/star_icon.svg";
+import { ReviewCard } from "./components/ReviewCard";
 
 export const Product = (data: any): string => {
-  console.log(data);
+  // console.log(data);
 
   return /*html*/ `
         ${Header()}
@@ -57,6 +58,28 @@ export const Product = (data: any): string => {
                                 <img src=${data.images[0]} alt=${
                   data.title
                 } class="bg-um-athens-gray w-[730px] h-[490px] rounded-3xl object-contain">
+                            </div>
+                            <div class="mt-10">
+                              <h1 class="flex items-center text-2xl font-semibold text-um-shark gap-2">${
+                                data.rating
+                              } <span class="flex">${Array(
+                  Math.round(data.rating)
+                )
+                  .fill("")
+                  .map(
+                    () =>
+                      /*html*/ `<img src=${star_icon} alt="star" height="16" width="16">`
+                  )
+                  .join(
+                    ""
+                  )}</span> <span class="text-sm text-um-manatee underline">${
+                  data.reviews.length
+                } sharh</span></h1>
+                              <div class="grid grid-cols-2 gap-3 mt-5 overflow-y-scroll h-[212px]">
+                                ${data.reviews
+                                  .map((review: any) => ReviewCard(review))
+                                  .join("")}
+                              </div>
                             </div>
                         </div>
                         ${ProductRight(data)}
