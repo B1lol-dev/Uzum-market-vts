@@ -24,7 +24,7 @@ export const Router = (root: HTMLDivElement) => {
           root.innerHTML = Product(data);
         })
         .catch((err) => {
-          console.error(err);
+          root.innerHTML = NotFound();
         });
     })
     .get("/search/:query", (req) => {

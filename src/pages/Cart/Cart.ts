@@ -7,6 +7,8 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { CartProductCard } from "./components/Cards/CartProductCard";
 import { CartProductCardSkeleton } from "./skeleton/CartProductCardSkeleton";
+import { ProductCard } from "../../components/Cards/ProductCard";
+import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
 
 export const Cart = () => {
   setTimeout(() => {
@@ -35,6 +37,23 @@ export const Cart = () => {
         }, 1000);
       })
       .catch((err) => console.error(err));
+
+    // other
+    const cart_other_products_wrapper = document.getElementById(
+      "cart_other_products_wrapper"
+    )! as HTMLDivElement;
+
+    axios
+      .get(`${API_URL}/products?limit=10`)
+      .then((res) => {
+        const products = res.data.products;
+
+        const productsHTML = products
+          .map((product: any) => ProductCard(product))
+          .join("");
+        cart_other_products_wrapper.innerHTML = productsHTML;
+      })
+      .catch((err) => console.error(err));
   }, 0);
 
   return /*html*/ `
@@ -57,6 +76,16 @@ export const Cart = () => {
                     </div>
                 </div>
             `)}
+        </section>
+        <section class="mt-30">
+          ${Container(/*html*/ `
+            <div id="cart_other_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8">
+              ${Array(20)
+                .fill("")
+                .map(() => ProductCardSkeleton())
+                .join("")}
+            </div>   
+          `)}
         </section>
     </main>
     ${Footer()}
