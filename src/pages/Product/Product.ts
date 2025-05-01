@@ -71,8 +71,23 @@ export const Product = (data: any): string => {
                   data.discountPercentage
                 ).toFixed(0)}%</span></h1>
                                 <div class="bg-um-lonestar text-xs text-um-nero inline-flex items-center justify-center px-1.5 py-0.5 rounded-full mb-1">Super narx</div>
+                                <div class="flex flex-col bg-um-athens-gray rounded-xl p-3">
+                                  <div class="flex justify-between">
+                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90 brightness-100!">24 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">12 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">6 oy</button>
+                                    <button type="button" class="w-full text-sm py-1 px-2 shadow-md rounded-md bg-um-athens-gray brightness-90">3 oy</button>
+                                  </div>
+                                  <div class="flex items-center gap-2 mt-2">
+                                    <h3 class="bg-um-diesel text-base font-semibold rounded-md py-0.5 px-1.5">${Number(
+                                      data.price / 24
+                                    ).toFixed(2)}USD</h3>
+                                    <span class="text-sm">x 24oy</span>
+                                    <button type="button" class="ml-auto text-um-boulder">></button>
+                                  </div>
+                                </div>
                                 <div>
-
+                                    
                                 </div>
                             </div>
                         </div>
