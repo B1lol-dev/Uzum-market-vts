@@ -6,6 +6,7 @@ import { API_URL } from "./constants/constants";
 import { Home } from "./pages/Home/Home";
 import { NotFound } from "./pages/404/NotFound";
 import { Product } from "./pages/Product/Product";
+import { Search } from "./pages/Search/Search";
 
 export const Router = (root: HTMLDivElement) => {
   createRouter()
@@ -24,6 +25,10 @@ export const Router = (root: HTMLDivElement) => {
         .catch((err) => {
           console.error(err);
         });
+    })
+    .get("/search/:query", (req) => {
+      const query = req.get("query");
+      root.innerHTML = Search(query);
     })
     .error(404, () => {
       root.innerHTML = NotFound();

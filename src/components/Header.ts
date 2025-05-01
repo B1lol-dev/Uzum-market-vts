@@ -13,6 +13,19 @@ import uzb_flag_icon from "../assets/icons/flags/uzb.svg";
 import union_icon from "../assets/icons/union_icon.svg";
 
 export const Header = () => {
+  setTimeout(() => {
+    const header_search_form = document.getElementById(
+      "header_search_form"
+    )! as HTMLFormElement;
+    header_search_form.addEventListener("submit", (e: Event) => {
+      e.preventDefault();
+
+      const search_inp = header_search_form.children[0]! as HTMLInputElement;
+
+      location.pathname = `/search/${search_inp.value.trim().toLowerCase()}`;
+    });
+  }, 0);
+
   const navSubLinks: string[] = [
     "Elektronika",
     "Maishiy texnika",
@@ -56,7 +69,7 @@ export const Header = () => {
                     Katalog
                 </button>
 
-                <form class="rounded overflow-hidden border-1 border-[#36364033] h-[40px] max-w-[528px] w-full relative flex items-center justify-between ml-1.5">
+                <form id="header_search_form" class="rounded overflow-hidden border-1 border-[#36364033] h-[40px] max-w-[528px] w-full relative flex items-center justify-between ml-1.5">
                     <input type="text" placeholder="Mahsulotlar va turkumlar izlash" class="px-4 text-um-shark text-sm h-full outline-none w-[90%] placeholder:text-um-boulder">
                     <button type="submit" class="flex items-center justify-center bg-um-athens-gray h-full px-7">
                         <img src=${search_icon} alt="search">
