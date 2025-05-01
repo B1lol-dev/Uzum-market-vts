@@ -7,8 +7,29 @@ import { ProductRight } from "./components/ProductRight";
 import star_icon from "../../assets/icons/star_icon.svg";
 import { ReviewCard } from "./components/ReviewCard";
 
+// interfaces
+declare global {
+  interface Window {
+    productChangeImage(src: string, self: HTMLButtonElement): void;
+  }
+}
+
 export const Product = (data: any): string => {
-  // console.log(data);
+  window.productChangeImage = (src: string, self: HTMLButtonElement): void => {
+    const product_page_img = document.getElementById(
+      "product_page_img"
+    ) as HTMLImageElement;
+    if (product_page_img) {
+      product_page_img.src = src;
+
+      const buttons = self.parentElement!.querySelectorAll("button");
+      buttons.forEach((button: any): void => {
+        button.classList.remove("border-1", "border-um-shark");
+        button.classList.remove("first:border-1", "first:border-um-shark");
+      });
+      self.classList.add("border-1", "border-um-shark");
+    }
+  };
 
   return /*html*/ `
         ${Header()}
@@ -48,7 +69,7 @@ export const Product = (data: any): string => {
                                     ${data.images
                                       .map((image: string): string => {
                                         return /*html*/ `
-                                        <button type="button" class="h-[83px] w-[63px] rounded-2xl bg-um-athens-gray first:border-1 first:border-um-shark">
+                                        <button type="button" class="h-[83px] w-[63px] rounded-2xl bg-um-athens-gray first:border-1 first:border-um-shark" onclick="window.productChangeImage(this.children[0].src, this)">
                                             <img src=${image} alt="product">
                                         </button>
                                         `;
@@ -57,7 +78,7 @@ export const Product = (data: any): string => {
                                 </div>
                                 <img src=${data.images[0]} alt=${
                   data.title
-                } class="bg-um-athens-gray w-[730px] h-[490px] rounded-3xl object-contain">
+                } id="product_page_img" class="bg-um-athens-gray w-[730px] h-[490px] rounded-3xl object-contain">
                             </div>
                             <div class="mt-10">
                               <h1 class="flex items-center text-2xl font-semibold text-um-shark gap-2">${
