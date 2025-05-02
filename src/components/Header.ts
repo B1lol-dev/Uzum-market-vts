@@ -17,6 +17,7 @@ import catalog_icon from "../assets/icons/catalog_icon.svg";
 import location_icon from "../assets/icons/location_icon.svg";
 import uzb_flag_icon from "../assets/icons/flags/uzb.svg";
 import union_icon from "../assets/icons/union_icon.svg";
+import close_round_icon from "../assets/icons/close_round_icon.svg";
 
 const auth = new Auth();
 
@@ -52,6 +53,42 @@ export const Header = () => {
       .catch((err) => {
         console.error(err);
       });
+
+    // nav login info
+    const nav_account_btn = document.getElementById(
+      "nav_account_btn"
+    )! as HTMLButtonElement;
+    if (auth.token.get()) {
+      auth.getMyInfo().then((res) => {
+        const { data } = res;
+        nav_account_btn.children[1].textContent = data.username;
+        nav_account_btn.onclick = () => (location.pathname = "/user");
+      });
+    } else {
+      nav_account_btn.children[1].textContent = "Kirish";
+    }
+
+    // auth
+    const auth_modal = document.getElementById(
+      "auth_modal"
+    )! as HTMLFormElement;
+
+    auth_modal.addEventListener("submit", (e: Event) => {
+      e.preventDefault();
+      const username = auth_modal.querySelector(
+        "input[type='text']"
+      )! as HTMLInputElement;
+      const password = auth_modal.querySelector(
+        "input[type='password']"
+      )! as HTMLInputElement;
+
+      auth.login(username.value, password.value, () => {
+        alert("username or password are incorrect");
+        return;
+      });
+
+      auth_modal.closest("[data-auth-modal]")!.classList.toggle("hidden");
+    });
   }, 0);
 
   return /*html*/ `
@@ -93,9 +130,9 @@ export const Header = () => {
                 </form>
                 
                 <div class="flex gap-2 items-center ml-auto">
-                    <button type="button" class="flex items-center gap-2">
+                    <button type="button" class="flex items-center gap-2" id="nav_account_btn">
                         <img src=${user_icon} alt="user">
-                        Kirish
+                        <span></span>
                     </button>
                     <button type="button" class="flex items-center gap-2">
                         <img src=${heart_icon} alt="saved">
@@ -127,14 +164,20 @@ export const Header = () => {
             </div>    
         `)}
     </div>
-    ${
-      localStorage.getItem("token")
-        ? /*html*/ `
-        <form id="auth_modal">
-
-        </form>    
-    `
-        : /*html*/ ``
-    }
+    <div class="fixed top-0 left-0 z-10 bg-[#0009] h-screen w-screen flex items-center justify-center ${
+      auth.token.get() ? "hidden" : ""
+    }" data-auth-modal>
+        <form id="auth_modal" class="h-[500px] w-[400px] rounded-lg bg-white relative flex flex-col items-center gap-4 p-8">
+            <button type="button" class="absolute top-8 right-8" onclick="this.closest('[data-auth-modal]').classList.toggle('hidden')">
+                <img src=${close_round_icon} alt="x">
+            </button>
+            <h3 class="text-2xl font-semibold text-um-shark mt-2">Kirish</h3>
+            <p class="">Akkauntga kirish uchun username va passwordni kiriting</p>
+            <input type="text" placeholder="username" required class="bg-um-athens-gray text-xl p-4 w-full rounded-2xl focus:outline-1 focus:outline-um-lonestar">
+            <input type="password" placeholder="password" required class="bg-um-athens-gray text-xl p-4 w-full rounded-2xl focus:outline-1 focus:outline-um-lonestar">
+            <button type="submit" class="bg-um-lonestar text-xl p-4 w-full rounded-2xl text-um-nero">Kirish</button>
+            <p class="text-center text-sm mt-auto">Avtotizatsiyadan o'tish orqali siz shaxsiy ma'lumotlarni qayta ishlash siyosatiga rozilik bildirasiz </p>
+        </form>
+    </div>
     `;
 };

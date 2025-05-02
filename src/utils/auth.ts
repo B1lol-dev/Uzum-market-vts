@@ -4,7 +4,12 @@ import { API_URL } from "../constants/constants";
 export class Auth {
   constructor() {}
 
-  login(username: string, password: string, expiresInMins: number = 60): void {
+  login(
+    username: string,
+    password: string,
+    onError: Function = () => {},
+    expiresInMins: number = 60
+  ): void {
     if (!this.token.get()) {
       axios
         .post(`${API_URL}/auth/login`, {
@@ -20,9 +25,9 @@ export class Auth {
         })
         .catch((err) => {
           console.error(err);
+          onError();
           this.token.remove();
         });
-    } else {
     }
   }
 
