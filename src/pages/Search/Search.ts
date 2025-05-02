@@ -16,7 +16,7 @@ export const Search = (query: any): string => {
     )! as HTMLDivElement;
 
     axios
-      .get(`${API_URL}/products?limit=0`)
+      .get(`${API_URL}/products/search?q=${query}`)
       .then((res) => {
         const products = res.data.products;
         const filtredProducts = products.filter((product: any) => {
