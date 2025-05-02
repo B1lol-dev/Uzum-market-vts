@@ -43,7 +43,7 @@ export const Product = (data: any): string => {
     )! as HTMLDivElement;
 
     axios
-      .get(`${API_URL}/products?limit=10`)
+      .get(`${API_URL}/products/category/${data.category}?limit=10`)
       .then((res) => {
         const products = res.data.products;
 
