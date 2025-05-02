@@ -8,6 +8,7 @@ export class Auth {
     username: string,
     password: string,
     onError: Function = () => {},
+    onEnd: Function = () => {},
     expiresInMins: number = 60
   ): void {
     if (!this.token.get()) {
@@ -27,6 +28,9 @@ export class Auth {
           console.error(err);
           onError();
           this.token.remove();
+        })
+        .finally(() => {
+          onEnd();
         });
     }
   }

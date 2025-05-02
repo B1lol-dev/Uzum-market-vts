@@ -54,20 +54,6 @@ export const Header = () => {
         console.error(err);
       });
 
-    // nav login info
-    const nav_account_btn = document.getElementById(
-      "nav_account_btn"
-    )! as HTMLButtonElement;
-    if (auth.token.get()) {
-      auth.getMyInfo().then((res) => {
-        const { data } = res;
-        nav_account_btn.children[1].textContent = data.username;
-        nav_account_btn.onclick = () => (location.pathname = "/user");
-      });
-    } else {
-      nav_account_btn.children[1].textContent = "Kirish";
-    }
-
     // auth
     const auth_modal = document.getElementById(
       "auth_modal"
@@ -82,13 +68,36 @@ export const Header = () => {
         "input[type='password']"
       )! as HTMLInputElement;
 
-      auth.login(username.value, password.value, () => {
-        alert("username or password are incorrect");
-        return;
-      });
-
-      auth_modal.closest("[data-auth-modal]")!.classList.toggle("hidden");
+      auth.login(
+        username.value,
+        password.value,
+        () => {
+          alert("username or password are incorrect");
+          return null;
+        },
+        () => {
+          auth_modal.closest("[data-auth-modal]")!.classList.toggle("hidden");
+          location.reload();
+        }
+      );
     });
+
+    // nav login info
+    const nav_account_btn = document.getElementById(
+      "nav_account_btn"
+    )! as HTMLButtonElement;
+    if (auth.token.get()) {
+      auth.getMyInfo().then((res) => {
+        const { data } = res;
+        nav_account_btn.children[1].textContent = data.username;
+        nav_account_btn.onclick = () => (location.pathname = "/user");
+      });
+    } else {
+      nav_account_btn.children[1].textContent = "Kirish";
+      nav_account_btn.addEventListener("click", () =>
+        document.querySelector("[data-auth-modal]")!.classList.toggle("hidden")
+      );
+    }
   }, 0);
 
   return /*html*/ `
@@ -164,9 +173,7 @@ export const Header = () => {
             </div>    
         `)}
     </div>
-    <div class="fixed top-0 left-0 z-10 bg-[#0009] h-screen w-screen flex items-center justify-center ${
-      auth.token.get() ? "hidden" : ""
-    }" data-auth-modal>
+    <div class="fixed top-0 left-0 z-10 bg-[#0009] h-screen w-screen flex items-center justify-center hidden" data-auth-modal>
         <form id="auth_modal" class="h-[500px] w-[400px] rounded-lg bg-white relative flex flex-col items-center gap-4 p-8">
             <button type="button" class="absolute top-8 right-8" onclick="this.closest('[data-auth-modal]').classList.toggle('hidden')">
                 <img src=${close_round_icon} alt="x">
