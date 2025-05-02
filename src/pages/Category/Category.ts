@@ -6,6 +6,7 @@ import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
 import { ProductCard } from "../../components/Cards/ProductCard";
+import { Footer } from "../../components/Footer";
 
 export const Category = (category: any): string => {
   setTimeout(() => {
@@ -83,5 +84,6 @@ export const Category = (category: any): string => {
             `)}
         </section>
     </main>
+    ${Footer()}
   `;
 };
