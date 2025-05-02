@@ -23,7 +23,6 @@ export const Category = (category: any): string => {
       )
       .then((res) => {
         const { data } = res;
-        console.log(data);
         const TOTAL = data.total;
         const products = data.products;
 

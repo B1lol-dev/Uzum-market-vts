@@ -1,6 +1,9 @@
 import axios from "axios";
 import { API_URL } from "../constants/constants";
 
+// utils
+import { Auth } from "../utils/auth";
+
 // components
 import { Container } from "./Container";
 
@@ -14,6 +17,8 @@ import catalog_icon from "../assets/icons/catalog_icon.svg";
 import location_icon from "../assets/icons/location_icon.svg";
 import uzb_flag_icon from "../assets/icons/flags/uzb.svg";
 import union_icon from "../assets/icons/union_icon.svg";
+
+const auth = new Auth();
 
 export const Header = () => {
   setTimeout(() => {
@@ -122,5 +127,14 @@ export const Header = () => {
             </div>    
         `)}
     </div>
+    ${
+      localStorage.getItem("token")
+        ? /*html*/ `
+        <form id="auth_modal">
+
+        </form>    
+    `
+        : /*html*/ ``
+    }
     `;
 };
