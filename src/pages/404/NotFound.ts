@@ -1,5 +1,9 @@
 import axios from "axios";
-import { API_URL } from "../../constants/constants";
+import {
+  API_URL,
+  PRODUCTS_COUNT_LIMIT,
+  PRODUCTS_LIMIT,
+} from "../../constants/constants";
 
 // components
 import { Container } from "../../components/Container";
@@ -28,6 +32,45 @@ export const NotFound = (): string => {
         notfound_products_wrapper.innerHTML = productsHTML;
       })
       .catch((err) => console.error(err));
+
+    // see more button
+    const notfound_products_seemore = document.getElementById(
+      "notfound_products_seemore"
+    )! as HTMLButtonElement;
+
+    let limit_counter: number = 0;
+    notfound_products_seemore.addEventListener("click", () => {
+      limit_counter++;
+      if (PRODUCTS_COUNT_LIMIT * limit_counter >= PRODUCTS_LIMIT) {
+        notfound_products_seemore.remove();
+      }
+
+      notfound_products_wrapper.innerHTML += Array(PRODUCTS_COUNT_LIMIT)
+        .fill("")
+        .map(() => ProductCardSkeleton())
+        .join("");
+
+      axios
+        .get(
+          `${API_URL}/products?limit=${PRODUCTS_COUNT_LIMIT}&skip=${
+            PRODUCTS_COUNT_LIMIT * limit_counter
+          }`
+        )
+        .then((res) => {
+          const products = res.data.products;
+
+          const productsHTML = products
+            .map((product: any) => ProductCard(product))
+            .join("");
+          notfound_products_wrapper.innerHTML += productsHTML;
+        })
+        .catch((err) => console.error(err))
+        .finally(() => {
+          notfound_products_wrapper
+            .querySelectorAll("[data-skeleton]")!
+            .forEach((skelet) => skelet.remove());
+        });
+    });
   }, 0);
 
   return /*html*/ `
@@ -47,6 +90,7 @@ export const NotFound = (): string => {
               .map(() => ProductCardSkeleton())
               .join("")}
           </div>  
+          <button type="button" class="block mx-auto bg-um-athens-gray px-[300px] py-[7px] h-14 rounded-lg mt-10" id="notfound_products_seemore">Yana koʻrsatish ${PRODUCTS_COUNT_LIMIT}</button>
         `)}
       </section>
     </main>
