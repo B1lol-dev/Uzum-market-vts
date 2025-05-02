@@ -79,9 +79,9 @@ export const CartProductCard = (data: any): string => {
     data.title
   } height="120" width="120" class="bg-um-athens-gray rounded">
           <div class="flex flex-col justify-between w-70">
-            <a href="/product/${
-              data.id
-            }" onclick="location.pathname = '/product/${data.id}'">
+            <a href="/product/${data.id}" onclick="location.href = '/product/${
+    data.id
+  }'">
               <h1>${data.title}</h1>
             </a>
             <div>

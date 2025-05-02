@@ -73,7 +73,7 @@ export class Auth {
 
       return res;
     } catch (err: any) {
-      if (err.response.status === 401) {
+      if (err?.response.status === 401) {
         this.token.remove();
         this.refreshToken.remove();
       }

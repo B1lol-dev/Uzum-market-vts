@@ -9,6 +9,7 @@ import { Product } from "./pages/Product/Product";
 import { Search } from "./pages/Search/Search";
 import { Cart } from "./pages/Cart/Cart";
 import { Category } from "./pages/Category/Category";
+import { User } from "./pages/User/User";
 
 export const Router = (root: HTMLDivElement) => {
   createRouter()
@@ -38,6 +39,13 @@ export const Router = (root: HTMLDivElement) => {
     .get("/category/:category", (req) => {
       const category = req.get("category");
       root.innerHTML = Category(category);
+    })
+    .get("/user", () => {
+      location.href = "/user/orders";
+    })
+    .get("/user/:tab", (req) => {
+      const tab = req.get("tab");
+      root.innerHTML = User(tab);
     })
     .error(404, () => {
       root.innerHTML = NotFound();

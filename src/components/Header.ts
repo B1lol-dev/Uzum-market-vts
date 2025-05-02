@@ -31,7 +31,7 @@ export const Header = () => {
 
       const search_inp = header_search_form.children[0]! as HTMLInputElement;
 
-      location.pathname = `/search/${search_inp.value.trim().toLowerCase()}`;
+      location.href = `/search/${search_inp.value.trim().toLowerCase()}`;
     });
 
     // sub navbar categories
@@ -46,7 +46,7 @@ export const Header = () => {
         header_subnav_links.innerHTML = data
           .map(
             (link: any) =>
-              /*html*/ `<li class="text-sm text-um-mid-gray text-nowrap"><a href="/category/${link.slug}" onclick="location.pathname = '/category/${link.slug}'">${link.name}</a></li>`
+              /*html*/ `<li class="text-sm text-um-mid-gray text-nowrap"><a href="/category/${link.slug}" onclick="location.href = '/category/${link.slug}'">${link.name}</a></li>`
           )
           .join("");
       })
@@ -90,7 +90,7 @@ export const Header = () => {
       auth.getMyInfo().then((res) => {
         const { data } = res;
         nav_account_btn.children[1].textContent = data.username;
-        nav_account_btn.onclick = () => (location.pathname = "/user");
+        nav_account_btn.onclick = () => (location.href = "/user/orders");
       });
     } else {
       nav_account_btn.children[1].textContent = "Kirish";
@@ -122,7 +122,7 @@ export const Header = () => {
     <header>
         ${Container(/*html*/ `
             <nav class="flex items-center py-4">
-                <a href="/" onclick="location.pathname = '/'">
+                <a href="/" onclick="location.href = '/'">
                     <img src=${logo_img} alt="Uzum" height="32" width="215">
                 </a>
 
@@ -147,7 +147,7 @@ export const Header = () => {
                         <img src=${heart_icon} alt="saved">
                         Saralangan
                     </button>
-                    <a href="/cart" onclick="location.pathname = '/cart'">
+                    <a href="/cart" onclick="location.href = '/cart'">
                         <button type="button" class="flex items-center gap-2">
                             <img src=${bag_icon} alt="cart">
                             Savat

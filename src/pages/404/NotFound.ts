@@ -82,7 +82,7 @@ export const NotFound = (): string => {
             <img src=${searching_penguin_img} alt="Searching penguin" class="w-32 h-32">
             <h1 class="text-2xl font-semibold mt-6">Nimadir oʻxshamadi</h1>
             <p class="text-sm mt-2">Orqaga qaytib koʻring yoki asosiy sahifaga oʻting</p>
-            <a href="/" onclick="location.pathname = '/'"><button type="button" class="mt-4 bg-um-athens-gray py-2.5 px-4 rounded-xl text-base">Bosh sahifaga</button></a>
+            <a href="/" onclick="location.href = '/'"><button type="button" class="mt-4 bg-um-athens-gray py-2.5 px-4 rounded-xl text-base">Bosh sahifaga</button></a>
           </div>
           <div id="notfound_products_wrapper" class="grid justify-items-center grid-cols-5 gap-x-5 gap-y-8 mt-30">
             ${Array(20)

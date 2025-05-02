@@ -4,7 +4,7 @@ import add_to_bag_icon from "../../assets/icons/add_to_bag_icon.svg";
 
 export const ProductCard = (data: any): string => {
   return /*html*/ `
-    <a href="/product/${data.id}" onclick="location.pathname = '/product/${
+    <a href="/product/${data.id}" onclick="location.href = '/product/${
     data.id
   }'">
         <div class="flex flex-col max-w-[232px] w-full gap-3 transition duration-200 hover:shadow-md group">
