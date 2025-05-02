@@ -1,3 +1,6 @@
+import axios from "axios";
+import { API_URL } from "../constants/constants";
+
 // components
 import { Container } from "./Container";
 
@@ -24,19 +27,27 @@ export const Header = () => {
 
       location.pathname = `/search/${search_inp.value.trim().toLowerCase()}`;
     });
-  }, 0);
 
-  const navSubLinks: string[] = [
-    "Elektronika",
-    "Maishiy texnika",
-    "Kiyim",
-    "Poyabzallar",
-    "Aksessuarlar",
-    "Goʻzallik va parvarish",
-    "Salomatlik",
-    "Uy-roʻzgʻor buyumlari",
-    "Qurilish va taʼmirlash",
-  ];
+    // sub navbar categories
+
+    axios
+      .get(`${API_URL}/products/categories`)
+      .then((res) => {
+        const header_subnav_links = document.getElementById(
+          "header_subnav_links"
+        )! as HTMLUListElement;
+        const { data } = res;
+        header_subnav_links.innerHTML = data
+          .map(
+            (link: any) =>
+              /*html*/ `<li class="text-sm text-um-mid-gray text-nowrap"><a href="/category/${link.slug}" onclick="location.pathname = '/category/${link.slug}'">${link.name}</a></li>`
+          )
+          .join("");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, 0);
 
   return /*html*/ `
     <div class="bg-um-athens-gray py-2">
@@ -98,21 +109,16 @@ export const Header = () => {
     <div class="mb-6">
         ${Container(/*html*/ `
             <div class="flex items-center">
-                <a href="#" class="flex items-center gap-1 font-semibold text-xs">
+                <a href="#" class="flex items-center gap-1 font-semibold text-xs text-nowrap">
                     <img src=${union_icon} alt="">
                     Muddatli to'lov
                 </a>
-                <ul class="flex items-center gap-5 ml-5 mr-auto">
-                    ${navSubLinks
-                      .map(
-                        (link: string) =>
-                          /*html*/ `<li class="text-sm text-um-mid-gray"><a href="#">${link}</a></li>`
-                      )
-                      .join("")}
+                <ul class="flex items-center gap-5 ml-10 mr-auto overflow-auto py-2" id="header_subnav_links">
+                   
                 </ul>
-                <select class="text-sm text-um-mid-gray cursor-pointer">
+                <!-- <select class="text-sm text-um-mid-gray cursor-pointer">
                     <option value="more">Yana</option>
-                </select>
+                </select> -->
             </div>    
         `)}
     </div>

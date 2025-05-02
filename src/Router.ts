@@ -8,6 +8,7 @@ import { NotFound } from "./pages/404/NotFound";
 import { Product } from "./pages/Product/Product";
 import { Search } from "./pages/Search/Search";
 import { Cart } from "./pages/Cart/Cart";
+import { Category } from "./pages/Category/Category";
 
 export const Router = (root: HTMLDivElement) => {
   createRouter()
@@ -33,6 +34,10 @@ export const Router = (root: HTMLDivElement) => {
     })
     .get("/cart", () => {
       root.innerHTML = Cart();
+    })
+    .get("/category/:category", (req) => {
+      const category = req.get("category");
+      root.innerHTML = Category(category);
     })
     .error(404, () => {
       root.innerHTML = NotFound();
