@@ -10,6 +10,12 @@ import { CartProductCardSkeleton } from "./skeleton/CartProductCardSkeleton";
 import { ProductCard } from "../../components/Cards/ProductCard";
 import { ProductCardSkeleton } from "../../components/skeletons/Cards/ProductCardSkeleton";
 
+// utils
+import { Auth } from "../../utils/auth";
+
+// declorations
+const auth = new Auth();
+
 export const Cart = () => {
   setTimeout(() => {
     const cart_products_wrapper = document.getElementById(
@@ -20,23 +26,25 @@ export const Cart = () => {
       "cart_title_count"
     )! as HTMLSpanElement;
 
-    axios
-      .get(`${API_URL}/carts/1`)
-      .then((res) => {
-        const products = res.data.products;
+    auth.getMyInfo().then((res) => {
+      axios
+        .get(`${API_URL}/carts/${res.data.id}`)
+        .then((res) => {
+          const products = res.data.products;
 
-        cart_title_count.innerText = products.length + " mahsulot";
+          cart_title_count.innerText = products.length + " mahsulot";
 
-        const productsHTML = products
-          .map((product: any) => CartProductCard(product))
-          .join("");
-        cart_products_wrapper.innerHTML = productsHTML;
+          const productsHTML = products
+            .map((product: any) => CartProductCard(product))
+            .join("");
+          cart_products_wrapper.innerHTML = productsHTML;
 
-        setInterval(() => {
-          cart_title_count.innerText = `${cart_products_wrapper.children.length} mahsulot`;
-        }, 1000);
-      })
-      .catch((err) => console.error(err));
+          setInterval(() => {
+            cart_title_count.innerText = `${cart_products_wrapper.children.length} mahsulot`;
+          }, 1000);
+        })
+        .catch((err) => console.error(err));
+    });
 
     // other
     const cart_other_products_wrapper = document.getElementById(
