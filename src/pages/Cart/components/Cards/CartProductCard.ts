@@ -91,15 +91,15 @@ export const CartProductCard = (data: any): string => {
           </div>
           <div class="flex items-center">
             <div class="rounded-[2px] border-1 border-um-boulder text-um-boulder flex items-center">
-              <button type="button" class="w-10 text-2xl" onclick="this.nextElementSibling.value=Number(this.nextElementSibling.value)-1; if(this.nextElementSibling.value < 1){this.nextElementSibling.value = 1}; document.querySelector('[data-cart-product-price]').innerText = (${Number(
+              <button type="button" class="w-10 text-2xl" onclick="this.nextElementSibling.value=Number(this.nextElementSibling.value)-1; if(this.nextElementSibling.value < 1){this.nextElementSibling.value = 1}; this.closest('[data-cart-product]').querySelector('[data-cart-product-price]').innerText = (${Number(
                 data.price * (1 - data.discountPercentage / 100)
               ).toFixed(
                 2
               )} * this.nextElementSibling.value) + ' USD'">-</button>
-              <input type="number" value="1" min="1" class="w-10 text-center no-inp-btns text-sm" oninput="document.querySelector('[data-cart-product-price]').innerText = (${Number(
+              <input type="number" value="1" min="1" class="w-10 text-center no-inp-btns text-sm" oninput="this.closest('[data-cart-product]').querySelector('[data-cart-product-price]').innerText = (${Number(
                 data.price * (1 - data.discountPercentage / 100)
               ).toFixed(2)} * this.value) + ' USD'">
-              <button type="button" class="w-10 text-2xl" onclick="this.previousElementSibling.value=Number(this.previousElementSibling.value)+1; document.querySelector('[data-cart-product-price]').innerText = (${Number(
+              <button type="button" class="w-10 text-2xl" onclick="this.previousElementSibling.value=Number(this.previousElementSibling.value)+1; this.closest('[data-cart-product]').querySelector('[data-cart-product-price]').innerText = (${Number(
                 data.price * (1 - data.discountPercentage / 100)
               ).toFixed(
                 2
