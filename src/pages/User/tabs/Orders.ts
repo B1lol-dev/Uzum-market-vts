@@ -1,13 +1,13 @@
 // declorations
 declare global {
   interface Window {
-    handleUserReviewsFilter(_self: HTMLButtonElement): void;
+    handleUserOrdersFilter(_self: HTMLButtonElement): void;
   }
 }
 const params = new URLSearchParams(location.search);
 
 export const Orders = (): string => {
-  window.handleUserReviewsFilter = (_self: HTMLButtonElement): void => {
+  window.handleUserOrdersFilter = (_self: HTMLButtonElement): void => {
     const btns_wrapper = _self.parentElement! as HTMLUListElement;
 
     btns_wrapper.querySelectorAll("button").forEach((btn) => {
@@ -16,7 +16,7 @@ export const Orders = (): string => {
 
     _self.classList.add("text-um-nero!", "bg-um-shark");
 
-    location.search = `filter=${_self.dataset.filter}`;
+    location.search = `?filter=${_self.dataset.filter}`;
   };
 
   return /*html*/ `
