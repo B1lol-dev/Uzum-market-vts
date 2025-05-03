@@ -8,6 +8,10 @@ This project is a clone of the Uzum Market built using modern web development to
 - **Product Page**: Detailed view of a single product.
 - **Search Page**: Search functionality to find products.
 - **Cart Page**: View and manage products added to the cart.
+- **User Authentication**: Secure login and registration functionality.
+- **User Page Control**: Personalized user dashboard to manage account details and order history.
+- **Recommendations**: Product recommendations based on user preferences and browsing history.
+- **Categories**: Organized product categories for easier navigation.
 - **404 Page**: Custom page for non-existent routes.
 - **Skeleton Loading**: Smooth loading experience.
 
@@ -53,6 +57,9 @@ This project uses the [dummyjson API](https://dummyjson.com/) to fetch product d
 - **Product**: Shows detailed information about a selected product.
 - **Search**: Allows users to search for products.
 - **Cart**: Displays products added to the cart and allows quantity adjustments or removal.
+- **User**: Provides a personalized dashboard for managing user details and orders.
+- **Categories**: Displays products grouped by categories for better navigation.
+- **Recommendations**: Suggests products based on user activity and preferences.
 - **404**: Displays a custom error page for invalid routes.
 
 ## License
